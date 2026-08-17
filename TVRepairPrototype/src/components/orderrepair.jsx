@@ -46,48 +46,35 @@ export default function OrderRepair()
     
     return (
     <div className="bg-info">  
-      <div className="container-fluid row justify-content-end text-bg-success">
+      <div className="container-fluid row justify-content-end">
 
-        <div className="col-8 container p-5 border border-2 left-side-tv bg-success">
+        <div className="col-8 container p-5 border border-2 left-side-tv">
            <h1 >TV Broken?</h1>
+           <h1>We Repair, You Relax</h1>
            <p>Take photo and send to us</p>
-           <p>Assign to technician under 5 minute and technician will pickup your tv at your home</p>
+           <p>Assign to technician under 5 minute</p>
+           <p>technician will pickup your tv at your home</p>
         </div>
 
 
-        <div className="col-4 border border-2 p-5">
+        <div className="col-4 border border-2 p-5 right-side-orderform">
             <form onSubmit={SaveData}> 
             <p><b>What's wrong with your TV?</b></p>
 
-            {/* <p>TV Brand?</p>
-            <input name='Brand' type='text' className="form-control"></input>
-
-            <p>Issue description</p>
-            <input name='IssueDescription' type='text' className="form-control"></input>
-
-            <p>Area</p>
-            <input name='Area' type='text' className="form-control"></input>
-
-            <p>Add Photo</p>
-            <input name='Photo' type='file' accept='image/*' className="form-control"></input>
-             */}
             <p>TV Brand?</p>
-            <input type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input>
+            <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input>
 
             <p>Issue Description</p>
-            <input type="text" value={issuedescription} onChange={(event)=> setIssueDesc(event.target.value)}></input>
+            <input className="form-control" type="text" value={issuedescription} onChange={(event)=> setIssueDesc(event.target.value)}></input>
 
             <p>Area</p>
-            <input type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input>
+            <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input>
             
             <p>Add Photo</p>
-            <input name='Photo' type='file' accept='image/*' className="form-control"></input>
-
-
+            <input className="form-control" name='Photo' type='file' accept='image/*' className="form-control"></input>
 
             <br></br>
-            <br></br>
-            <button>Submit Order</button>
+            <button className="bg-success text-light p-2 m-2 align-items-center">Submit Order</button>
 
         </form>
         </div>

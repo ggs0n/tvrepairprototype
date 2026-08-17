@@ -44,6 +44,8 @@ export default function Register()
             <input name="name" type="text" className="form-control"></input>
             <label>Email : </label>
             <input name="email" type="text" className="form-control"></input>
+            <label><input type="radio" value="customer"></input> Customer</label>
+            <label><input type="radio" value="technician"></input> Technician</label>
             <label>Password :</label>
             <input name="password" type="password" className="form-control"></input><br/>
             <label>Re-enter Password :</label>

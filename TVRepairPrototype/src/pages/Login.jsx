@@ -14,6 +14,12 @@ export default function Login()
         
         const formData = new FormData(event.currentTarget);
 
+        if (formData.get("password") !== formData.get("reenterpass"))
+        {
+            alert("Password not match")
+            return;
+        }
+
         const response = await fetch
         ('http://localhost:5070/api/Authentication/loginuser', 
         {
@@ -50,12 +56,13 @@ export default function Login()
             <h1>Login Detail</h1>
             <label>Email : </label>
             <input type="text" name="email" className="form-control"></input>
-            <label>Technician / User</label>
-            <input type="radio" value="user"></input> 
+            <label><input type="radio" value="customer"></input> Customer</label>
+            <label><input type="radio" value="technician"></input> Technician</label>
+            
             <label>Password :</label>
-            <input type="password" name="password" className="form-control"></input><br/>
+            <input type="password" name="password" className="form-control"></input>
             <label>Re-enter Password :</label>
-            <input type="password" className="form-control"></input><br/>
+            <input type="password" name="reenterpass" className="form-control"></input><br/>
         </div>
         <div className="d-flex container align-items-center gap-2 col-5">
             <button className="btn btn-primary" type="submit">Login</button>

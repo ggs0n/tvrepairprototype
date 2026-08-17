@@ -8,6 +8,6 @@ namespace TVRepair.Api.model
 {
     public class ApplicationUser : IdentityUser
     {
-        
+        public string CustomerType { get; set;}
     }
 }

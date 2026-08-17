@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 h1,h2,p {
-    font-family: "Inter";
-    color: greenyellow;
+  font-family: 'Inter', sans-serif;
 }
 
 
 .left-side-tv {
+     background:
+    linear-gradient(
+      145deg,
+      rgba(210, 255, 200, 0.86),
+      rgba(252, 252, 252, 0.96)
+    );
+}
 
-   background-color:lightblue;
+.right-side-orderform {
+    background-color:white;
 }
