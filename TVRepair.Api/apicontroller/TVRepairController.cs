@@ -49,10 +49,12 @@ namespace TVRepair.Api.apicontroller
 
 
         [HttpGet("GetRepairOrder")]
-        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrder()
+        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrder(string UserName)
         {
+            if (UserName==null)
+            return BadRequest();
             
-            var repairorderlist = await _context.RepairOrder.AsNoTracking().ToListAsync();
+            var repairorderlist = await _context.RepairOrder.Where(a=>a.UserName == UserName).AsNoTracking().ToListAsync();
 
             if(repairorderlist==null)
             return BadRequest();

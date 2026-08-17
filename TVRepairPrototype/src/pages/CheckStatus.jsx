@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query";
-
+import { useUserAuth } from "../context/authenticationcontext";
 
 
 export default function CheckStatus()
 {
     const [orders, setOrder] = useState([]);
+    const {user} = useUserAuth();
 
     async function LoadOrder()
     {
-        const response = await fetch
-        ('https://localhost:7125/api/TVRepair/GetRepairOrder');
+        const query = new URLSearchParams(
+            {
+                UserName : user.email
+            }
+        );
 
+        const response = await fetch
+        (`http://localhost:5070/api/TVRepair/GetRepairOrder?${query}`);
 
         const data = await response.json();
 
@@ -28,13 +34,13 @@ export default function CheckStatus()
 
     return (
         <>
-            <div className="container align-items-center d-flex flex-column p-4">
+            <div className="container align-items-center d-flex flex-column p-4 border border-2 bg-success">
                 <h1>Your Order</h1>
+                {orders?.length > 0 ? (
                 <div>
                     <div>
-                        <table className="border border-4">
-
-                            <thead>
+                        <table className="border border-4 bg-light border border-2 border-dark p-2 m-2">
+                            <thead className="border border-2 border-black p-2 m-2 gap-2">
                                 <tr>
                                     <th>Brand</th>
                                     <th>Area</th>
@@ -54,6 +60,8 @@ export default function CheckStatus()
                     </div>
 
                 </div>
+                ) : (<p>No orders</p>
+                )}
                 <br/>
                 <button>Call Technician</button>
             </div>
