@@ -1,0 +1,68 @@
+import { Link, useInRouterContext, useNavigate } from "react-router"
+import { useState, useEffect } from "react";
+import { useUserAuth } from "../context/authenticationcontext";
+export default function Login()
+
+{
+
+    const { setUser } = useUserAuth();
+    const navigate = useNavigate();
+
+    async function LoginUser(event)
+    {
+        event.preventDefault();
+        
+        const formData = new FormData(event.currentTarget);
+
+        const response = await fetch
+        ('http://localhost:5070/api/Authentication/loginuser', 
+        {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+              email : formData.get("email"),
+              password : formData.get("password"),
+            })
+            
+        });
+
+        if(response.ok)
+        {
+            const responsedata = await response.json();
+            setUser(responsedata);
+            alert("login success");
+            navigate("/");
+
+        }
+        else {
+            alert("login failed")
+        }
+
+    }
+
+    return (
+    <>
+    <div className="border border-5">
+        <form onSubmit={LoginUser}>
+        <div className="container p-2 gap-3 d-flex flex-column col-5">
+            <h1>Login Detail</h1>
+            <label>Email : </label>
+            <input type="text" name="email" className="form-control"></input>
+            <label>Technician / User</label>
+            <input type="radio" value="user"></input> 
+            <label>Password :</label>
+            <input type="password" name="password" className="form-control"></input><br/>
+            <label>Re-enter Password :</label>
+            <input type="password" className="form-control"></input><br/>
+        </div>
+        <div className="d-flex container align-items-center gap-2 col-5">
+            <button className="btn btn-primary" type="submit">Login</button>
+            <button className="btn btn-primary" onClick={LoginUser}>Forgot Password</button>
+        </div>
+        </form>
+    </div>
+    </>
+    )
+}
