@@ -22,8 +22,6 @@ export default function OrderRepair()
         formData.set("Area", area);
         formData.set("IssueDescription",issuedescription);
 
-
-
         const response = await fetch(
             'http://localhost:5070/api/TVRepair/AddRepairOrder',
             {
@@ -42,7 +40,6 @@ export default function OrderRepair()
         console.error(error)
         }
     }
-
     
     return (
     <div className="">  
@@ -60,22 +57,29 @@ export default function OrderRepair()
            </div>
         </div>
 
-
-
-
         <div className="col-4 border border-2 p-5 right-side-orderform">
             <form onSubmit={SaveData}> 
             <p><b>What's wrong with your TV?</b></p>
 
             <p>TV Brand?</p>
-            <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input>
+            {/* <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input> */}
+            <select className='form-select mb-4'>
+                <option value="Samsung">Samsung</option>
+                <option value="Sony">Sony</option>
+                <option value="Hitachi">Hitachi</option>
+            </select>
 
             <p>Issue Description</p>
             <input className="form-control" type="text" value={issuedescription} onChange={(event)=> setIssueDesc(event.target.value)}></input>
 
             <p>Area</p>
-            <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input>
-            
+            {/* <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input> */}
+            <select className="form-select mb-4">
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Kuala Lumpur">Johor</option>
+                <option value="Kuala Lumpur">Selangor</option>
+            </select>
+
             <p>Add Photo</p>
             <input className="form-control" name='Photo' type='file' accept='image/*' className="form-control"></input>
 
@@ -84,7 +88,6 @@ export default function OrderRepair()
 
         </form>
         </div>
-
 
         <div className="m-2 p-4 gap-2 justify-content-center d-flex">
             <div className="row g-5 w-100">
@@ -103,24 +106,18 @@ export default function OrderRepair()
 
             </div>
         </div>
-
-        
         <div className="modal fade" id="successModal" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-title">
                     Order submitted
                 </div>
-
                 <div className="modal-body">
                     Successfully submitted
                 </div>
-
             </div>
-
         </div>
         </div>
-
     </div>
     </div>
     )

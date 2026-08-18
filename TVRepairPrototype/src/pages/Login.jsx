@@ -4,8 +4,8 @@ import { useUserAuth } from "../context/authenticationcontext";
 export default function Login()
 
 {
-
-    const { setUser } = useUserAuth();
+    
+    const { user, setUser } = useUserAuth();
     const navigate = useNavigate();
 
     async function LoginUser(event)
@@ -31,7 +31,6 @@ export default function Login()
               email : formData.get("email"),
               password : formData.get("password")
             })
-            
         });
 
         if(response.ok)
@@ -39,7 +38,11 @@ export default function Login()
             const responsedata = await response.json();
             setUser(responsedata);
             alert("login success");
+
+            if (responsedata.customertype == 'customer')
             navigate("/");
+            else if(responsedata.customertype == 'technician')
+            navigate("/technicianpage")
 
         }
         else {

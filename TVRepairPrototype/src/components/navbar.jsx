@@ -38,9 +38,7 @@ export default function Navbar()
                         <p className="m-2">Hello! <b>{user?.email}, {user?.name}</b></p>
                         </div>
                         </div>                   
-                    )}
-
-                    
+                    )} 
                 </div>
             </div>
         </>

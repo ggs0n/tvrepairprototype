@@ -22,11 +22,9 @@ namespace TVRepair.Api.apicontroller
             _context = context;
         }
 
-
         [HttpPost("AddRepairOrder")]
         public async Task<ActionResult> AddRepairOrder([FromForm]RepairOrder request )
         {
-
             try 
             {
                 if(request==null)
@@ -46,7 +44,6 @@ namespace TVRepair.Api.apicontroller
             }
             
         }
-
 
         [HttpGet("GetRepairOrder")]
         public async Task<ActionResult<List<RepairOrder>>> GetRepairOrder(string UserName)

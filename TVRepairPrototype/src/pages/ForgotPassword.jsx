@@ -27,7 +27,6 @@ export default function ForgotPassword()
         }
         else {
             alert(response.status)
-            
         }
 
     }

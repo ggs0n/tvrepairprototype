@@ -42,6 +42,9 @@ namespace TVRepair.Api.apicontroller
             if(request.Password == null)
             return BadRequest("Password is empty");
 
+            if(request.Password == null)
+            return BadRequest("Customer Type is empty");
+
 
             var existingUser = await _userManager.FindByEmailAsync(request.Email);
 
@@ -51,7 +54,8 @@ namespace TVRepair.Api.apicontroller
             var usercreate = new ApplicationUser
             {
                 UserName = request.Name,
-                Email = request.Email
+                Email = request.Email,
+                CustomerType = request.CustomerType
             };
 
             var createUserResult = await _userManager.CreateAsync(usercreate, request.Password);
