@@ -45,16 +45,22 @@ export default function OrderRepair()
 
     
     return (
-    <div className="bg-info">  
+    <div className="">  
       <div className="container-fluid row justify-content-end">
 
         <div className="col-8 container p-5 border border-2 left-side-tv">
            <h1 >TV Broken?</h1>
-           <h1>We Repair, You Relax</h1>
+           <h1>We Repair, <span className="text-success">You Relax</span></h1>
            <p>Take photo and send to us</p>
            <p>Assign to technician under 5 minute</p>
            <p>technician will pickup your tv at your home</p>
+
+           <div className="d-flex justify-content-end">
+            <img src="../src/assets/tvpicturemainpage.png" width={600} height={400}></img>
+           </div>
         </div>
+
+
 
 
         <div className="col-4 border border-2 p-5 right-side-orderform">
@@ -77,6 +83,25 @@ export default function OrderRepair()
             <button className="bg-success text-light p-2 m-2 align-items-center">Submit Order</button>
 
         </form>
+        </div>
+
+
+        <div className="m-2 p-4 gap-2 justify-content-center d-flex">
+            <div className="row g-5 w-100">
+                <div className="col-3">
+                    Secure & Safe
+                </div>
+                <div className="col-3">
+                    Live Updates
+                </div>
+                <div className="col-3">
+                    Transparent Pricing
+                </div>
+                <div className="col-3">
+                    Support
+                </div>
+
+            </div>
         </div>
 
         

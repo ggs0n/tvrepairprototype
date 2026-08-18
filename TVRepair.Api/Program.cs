@@ -31,6 +31,27 @@ builder.Services.AddDbContext<TVRepairDBContext>(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>().AddEntityFrameworkStores<TVRepairDBContext>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Username rules
+    options.User.AllowedUserNameCharacters = string.Empty;
+    options.User.RequireUniqueEmail = false;
+
+    // Password rules
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 1;
+    options.Password.RequiredUniqueChars = 0;
+
+    // Login rules
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+
+    // Lockout
+    options.Lockout.AllowedForNewUsers = false;
+});
 
 var app = builder.Build();
 

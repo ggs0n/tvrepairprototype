@@ -10,6 +10,11 @@ export default function CheckStatus()
 
     async function LoadOrder()
     {
+        if (user?.email==null)
+        {
+            return;
+        }
+
         const query = new URLSearchParams(
             {
                 UserName : user.email
@@ -29,13 +34,14 @@ export default function CheckStatus()
 
     useEffect(()=> {
         LoadOrder();
-    }, [])
+    }, [user?.email])
 
 
     return (
         <>
-            <div className="container align-items-center d-flex flex-column p-4 border border-2 bg-success">
+            <div className="container align-items-center d-flex flex-column p-4 m-4 border border-2 bg-white">
                 <h1>Your Order</h1>
+                <img src="../src/assets/logomain.png" width={200}></img>
                 {orders?.length > 0 ? (
                 <div>
                     <div>
@@ -60,10 +66,9 @@ export default function CheckStatus()
                     </div>
 
                 </div>
-                ) : (<p>No orders</p>
+                ) : (<p>No orders. Let's get started here!</p>
                 )}
-                <br/>
-                <button>Call Technician</button>
+                <button className="btn btn-success m-2">Call Technician</button>
             </div>
         </>
     )

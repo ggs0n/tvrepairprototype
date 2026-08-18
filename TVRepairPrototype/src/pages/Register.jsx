@@ -1,8 +1,11 @@
 import { Link } from "react-router"
+import { useNavigate } from "react-router";
 
 export default function Register()
 
 {
+    const navigate = useNavigate()
+
     async function SubmitRegister(event)
     {
 
@@ -20,7 +23,8 @@ export default function Register()
             body : JSON.stringify( {
              name : formData.get("name"),
              email : formData.get("email"),
-             password : formData.get("password")
+             password : formData.get("password"),
+             customertype : formData.get("customertype")
             })
         })
 
@@ -29,7 +33,8 @@ export default function Register()
 
         if(response.ok)
         {
-            return alert("Success");
+            alert("Success");
+            navigate("/login");
         }
         else return alert(ErrorMessage);
     }
@@ -44,8 +49,8 @@ export default function Register()
             <input name="name" type="text" className="form-control"></input>
             <label>Email : </label>
             <input name="email" type="text" className="form-control"></input>
-            <label><input type="radio" value="customer"></input> Customer</label>
-            <label><input type="radio" value="technician"></input> Technician</label>
+            <label><input type="radio" name="customertype" value="customer"></input> Customer</label>
+            <label><input type="radio" name="customertype" value="technician"></input> Technician</label>
             <label>Password :</label>
             <input name="password" type="password" className="form-control"></input><br/>
             <label>Re-enter Password :</label>

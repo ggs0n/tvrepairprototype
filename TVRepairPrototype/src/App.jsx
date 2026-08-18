@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Footer from './components/footer'
 import {Routes,Route} from 'react-router'
+import ForgotPassword from './pages/ForgotPassword'
 import './App.css'
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/check-status" element={<CheckStatus />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element = {<ForgotPassword/>} />
+
         </Routes>
       <Footer></Footer>
           

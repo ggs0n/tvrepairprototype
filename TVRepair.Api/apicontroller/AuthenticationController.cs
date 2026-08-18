@@ -78,7 +78,7 @@ namespace TVRepair.Api.apicontroller
             _signinManager.AuthenticationScheme = IdentityConstants.ApplicationScheme;
 
             var loginresult = await _signinManager.PasswordSignInAsync(
-                userresult,request.Password,request.RememberMe,lockoutOnFailure : true
+                userresult,request.Password,request.RememberMe,lockoutOnFailure : false
             );
 
             if (loginresult.Succeeded)
@@ -86,8 +86,8 @@ namespace TVRepair.Api.apicontroller
             {
                 id = userresult.Id,
                 email = userresult.Email,
-                name = userresult.UserName
-                
+                name = userresult.UserName,
+                customertype = userresult?.CustomerType
             });
 
             else if(loginresult.IsNotAllowed)
@@ -96,7 +96,6 @@ namespace TVRepair.Api.apicontroller
             else return BadRequest();
 
             }
-
             catch (Exception ex)
             {
                 return Unauthorized();

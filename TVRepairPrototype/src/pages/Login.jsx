@@ -29,7 +29,7 @@ export default function Login()
             },
             body : JSON.stringify({
               email : formData.get("email"),
-              password : formData.get("password"),
+              password : formData.get("password")
             })
             
         });
@@ -56,8 +56,8 @@ export default function Login()
             <h1>Login Detail</h1>
             <label>Email : </label>
             <input type="text" name="email" className="form-control"></input>
-            <label><input type="radio" value="customer"></input> Customer</label>
-            <label><input type="radio" value="technician"></input> Technician</label>
+            <label><input type="radio" value="customer" name="customertype"></input> Customer</label>
+            <label><input type="radio" value="technician" name="customertype"></input> Technician</label>
             
             <label>Password :</label>
             <input type="password" name="password" className="form-control"></input>
@@ -66,7 +66,7 @@ export default function Login()
         </div>
         <div className="d-flex container align-items-center gap-2 col-5">
             <button className="btn btn-primary" type="submit">Login</button>
-            <button className="btn btn-primary" onClick={LoginUser}>Forgot Password</button>
+            <Link to="/forgotpassword" className="btn btn-primary" >Forgot Password</Link>
         </div>
         </form>
     </div>
