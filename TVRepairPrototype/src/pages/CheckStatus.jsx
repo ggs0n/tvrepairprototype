@@ -38,10 +38,10 @@ export default function CheckStatus()
 
 
     return (
-        <>
-            <div className="container align-items-center d-flex flex-column p-4 m-4 border border-2 bg-white">
+        <div className="min-vh-60 d-flex justify-content-center">
+            <div className="container align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">
                 <h1>Your Order</h1>
-                <img src="../src/assets/logomain.png" width={200}></img>
+                <img src="../src/assets/boxempty.png" width={200}></img>
                 {orders?.length > 0 ? (
                 <div>
                     <div>
@@ -70,6 +70,6 @@ export default function CheckStatus()
                 )}
                 <button className="btn btn-success m-2">Call Technician</button>
             </div>
-        </>
+        </div>
     )
 }

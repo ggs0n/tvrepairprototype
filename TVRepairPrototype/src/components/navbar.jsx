@@ -21,7 +21,14 @@ export default function Navbar()
                 
                 <div className="gap-2 p-4 d-flex">
                     <Link to="/" className="btn btn-success border border-2">Home</Link>
+
+                    {user?.customertype == "customer" && (
                     <Link to="/check-status" className="btn btn-success border border-2">Check Status</Link>
+                    )}
+
+                    {user?.customertype == "technician" && (
+                    <Link to="/technicianpage" className="btn btn-success border border-2">Check Job</Link>
+                    )}
 
                     { !user && (
                     <>

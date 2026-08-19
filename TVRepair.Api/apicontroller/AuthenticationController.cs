@@ -91,7 +91,8 @@ namespace TVRepair.Api.apicontroller
                 id = userresult.Id,
                 email = userresult.Email,
                 name = userresult.UserName,
-                customertype = userresult?.CustomerType
+                customertype = userresult?.CustomerType,
+                area = userresult?.PreferredArea
             });
 
             else if(loginresult.IsNotAllowed)

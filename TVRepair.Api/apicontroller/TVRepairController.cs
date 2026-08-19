@@ -58,5 +58,13 @@ namespace TVRepair.Api.apicontroller
 
             else return Ok(repairorderlist);
         }
+
+
+        [HttpGet("GetRepairOrderTechnician")]
+        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrderTechnician (string Area)
+        {
+            var orderlist = await _context.RepairOrder.Where(x=>x.Area==Area).AsNoTracking().ToListAsync();
+            return Ok(orderlist);
+        }
     }
 }

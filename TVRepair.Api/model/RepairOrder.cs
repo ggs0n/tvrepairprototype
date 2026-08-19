@@ -10,7 +10,7 @@ namespace TVRepair.Api.model
     {
         public Guid Id {get;set;}
 
-        public string UserName {get;set;}
+        public string? UserName {get;set;}
 
         public string Brand {get;set;}
 

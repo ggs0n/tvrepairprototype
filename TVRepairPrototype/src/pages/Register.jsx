@@ -8,7 +8,6 @@ export default function Register()
 
     async function SubmitRegister(event)
     {
-
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
@@ -29,7 +28,6 @@ export default function Register()
         })
 
         const ErrorMessage = await response.text();
-
 
         if(response.ok)
         {
@@ -56,7 +54,6 @@ export default function Register()
             <label>Re-enter Password :</label>
             <input type="password" className="form-control"></input>
         </div>
-
         <div className="d-flex container align-items-center gap-2 col-5">
             <button type="submit">Register</button>
         </div>
