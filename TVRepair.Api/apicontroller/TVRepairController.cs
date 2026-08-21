@@ -66,5 +66,37 @@ namespace TVRepair.Api.apicontroller
             var orderlist = await _context.RepairOrder.Where(x=>x.Area==Area).AsNoTracking().ToListAsync();
             return Ok(orderlist);
         }
+
+
+        [HttpPost("AcceptRepairOrderTechnician")]
+        public async Task<ActionResult<List<RepairOrder>>> AcceptRepairOrderTechnician (Guid Id, string TechnicianId)
+        {
+            if (Id == null)
+            return BadRequest("Id empty");
+
+            if (TechnicianId == null)
+            return BadRequest("technician id empty");
+
+            try {
+            
+            var updateorder = _context.RepairOrder.FirstOrDefault(x=>x.Id == Id);
+            updateorder.Status = "Accepted";
+            updateorder.TechnicianId = TechnicianId;
+            _context.SaveChanges();
+
+            return Ok(new
+            {
+                id = updateorder.Id,
+                TechnicianId = updateorder.TechnicianId,
+                Status = updateorder.Status
+            }
+            );
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

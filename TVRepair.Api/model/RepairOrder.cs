@@ -17,5 +17,9 @@ namespace TVRepair.Api.model
         public string Area { get;set;}
 
         public string IssueDescription { get; set;}
+
+        public string? Status { get ;set ;}
+
+        public string? TechnicianId { get ;set ;}
     }
 }
