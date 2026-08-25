@@ -3,6 +3,7 @@ import "./orderrepair.css";
 import { useQuery } from '@tanstack/react-query';
 import { useUserAuth } from "../context/authenticationcontext";
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function OrderRepair()
 {
@@ -10,6 +11,8 @@ export default function OrderRepair()
     const [area, setArea] = useState();
     const [issuedescription, setIssueDesc] = useState();
     const { user } = useUserAuth();
+    const [photo, setPhoto] = useState();
+    const navigate = useNavigate();
 
     async function SaveData(event)
     {
@@ -21,6 +24,7 @@ export default function OrderRepair()
         formData.set("Brand", brand);
         formData.set("Area", area);
         formData.set("IssueDescription",issuedescription);
+        formData.set("Photo",photo);
 
         const response = await fetch(
             'http://localhost:5070/api/TVRepair/AddRepairOrder',
@@ -32,9 +36,10 @@ export default function OrderRepair()
         )
 
         if (response.ok) {
-
         const modalElement = document.getElementById('successModal')
         Modal.getOrCreateInstance(modalElement).show()
+        navigate("/check-status")
+
         } else {
         const error = await response.text()
         console.error(error)
@@ -46,7 +51,7 @@ export default function OrderRepair()
       <div className="container-fluid row justify-content-end">
 
         <div className="col-8 container p-5 border border-2 left-side-tv">
-           <h1 >TV Broken?</h1>
+           <h1>TV Broken?</h1>
            <h1>We Repair, <span className="text-success">You Relax</span></h1>
            <p>Take photo and send to us</p>
            <p>Assign to technician under 5 minute</p>
@@ -76,13 +81,13 @@ export default function OrderRepair()
             {/* <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input> */}
             <select className="form-select mb-4" value={area} onChange={(event)=> setArea(event.target.value)}>
                 <option value="Kuala Lumpur">Kuala Lumpur</option>
-                <option value="Kuala Lumpur">Johor</option>
-                <option value="Kuala Lumpur">Selangor</option>
+                <option value="Johor">Johor</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Cyberjaya">Cyberjaya</option>
             </select>
 
             <p>Add Photo</p>
-            <input className="form-control" name='Photo' type='file' accept='image/*' className="form-control"></input>
-
+            <input className="form-control" name='Photo' type='file' accept='image/*' className="form-control" onChange={(event)=> setPhoto(event.target.files[0])}></input>
             <br></br>
             <button className="bg-success text-light p-2 m-2 align-items-center">Submit Order</button>
 

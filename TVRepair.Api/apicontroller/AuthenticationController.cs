@@ -45,6 +45,7 @@ namespace TVRepair.Api.apicontroller
             if(request.Password == null)
             return BadRequest("Customer Type is empty");
 
+            try {
 
             var existingUser = await _userManager.FindByEmailAsync(request.Email);
 
@@ -64,6 +65,13 @@ namespace TVRepair.Api.apicontroller
             return Ok("User created");
             else return BadRequest("Failed to register user. Pls contact Admin");
 
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
 
         [HttpPost("loginuser")]
@@ -71,7 +79,6 @@ namespace TVRepair.Api.apicontroller
         {
             if(request==null)
             return BadRequest("Bad Request");
-
 
             try {
             var userresult = await _userManager.FindByEmailAsync(request.Email);
@@ -105,6 +112,21 @@ namespace TVRepair.Api.apicontroller
             {
                 return Unauthorized();
             }
+        }
+
+
+        [HttpPost("logout")]
+        public async Task<ActionResult> LogoutUser ()
+        {
+            try {
+            await _signinManager.SignOutAsync();
+            return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+
         }
     }
 }

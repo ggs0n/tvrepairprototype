@@ -8,6 +8,10 @@ export default function CheckStatus()
     const [orders, setOrder] = useState([]);
     const {user} = useUserAuth();
 
+    const statusmessage = {
+        OrderPlace : "Your order has been placed."
+    }
+
     async function LoadOrder()
     {
         if (user?.email==null)
@@ -38,8 +42,10 @@ export default function CheckStatus()
 
 
     return (
-        <div className="d-flex justify-content-center flex-column justify-content-center">
-            <div className="justify-content-center align-content-center">
+        <div className="d-flex justify-content-center align-items-center flex-column justify-content-center">
+            <h1>Track Your Repair</h1>
+            <h2>Stay updated </h2>
+            <div className="justify-content-center align-content-centent mb-2">
                 {orders.map((order)=> (
                 <StatusTracker orderId={order.id} currentStatus={order.status}></StatusTracker>
                 ))}
@@ -51,12 +57,13 @@ export default function CheckStatus()
                 {orders?.length > 0 ? (
                 <div>
                     <div>
-                        <table className="border border-4 bg-light border border-2 border-dark p-2 m-2">
+                        <table className="border border-4 bg-light border border-2 border-dark p-4 m-4 gap-2">
                             <thead className="border border-2 border-black p-2 m-2 gap-2">
                                 <tr>
                                     <th>Brand</th>
                                     <th>Area</th>
                                     <th>Issue Description</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,6 +72,7 @@ export default function CheckStatus()
                                     <td>{order.brand}</td>
                                     <td>{order.area}</td>
                                     <td>{order.issueDescription}</td>
+                                    <td>{statusmessage[order.status]}</td>
                                 </tr>
                              ))}
                              </tbody>

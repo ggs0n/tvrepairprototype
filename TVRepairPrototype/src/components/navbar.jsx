@@ -16,7 +16,7 @@ export default function Navbar()
         Logout();
 
         navigate("/login", {
-            
+            state : { message : "success logout"}
         })
     }
 

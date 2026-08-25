@@ -1,12 +1,17 @@
 import { Link, useInRouterContext, useNavigate } from "react-router"
 import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/authenticationcontext";
+import { useLocation } from "react-router";
+
 export default function Login()
 
 {
     
-    const { user, setUser } = useUserAuth();
+    const { user, setUser, isLogout } = useUserAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const logoutmessage = location.state?.message;
 
     async function LoginUser(event)
     {
@@ -24,6 +29,7 @@ export default function Login()
         ('http://localhost:5070/api/Authentication/loginuser', 
         {
             method : "POST",
+            credentials: "include",
             headers : {
                 "Content-Type" : "application/json"
             },
@@ -57,6 +63,12 @@ export default function Login()
         <div className="m-2 p-2 d-flex flex-column col-2">
         <img src="../src/assets/tvpicturemainpage.png" width={650} height={500}></img>
         </div>
+
+        {logoutmessage && (
+            <div>
+                <p>{logoutmessage}</p>
+                </div>
+        )}
         
         <div className="container d-flex flex-column col-4 p-4 mb-4">
             <form onSubmit={LoginUser}>

@@ -38,6 +38,16 @@ namespace TVRepair.Api.apicontroller
                 _context.RepairOrder.Add(request);
                 await _context.SaveChangesAsync();
 
+                var statushistory = new RepairOrderStatusHistory
+                {
+                    RepairOrderID = request.Id,
+                    Status = request.Status,
+                    UpdatedDate = DateTime.Now
+                };
+
+                _context.RepairOrderStatusHistory.Add(statushistory);
+                await _context.SaveChangesAsync();
+
                 return Created();
             }
 
@@ -64,10 +74,19 @@ namespace TVRepair.Api.apicontroller
 
 
         [HttpGet("GetRepairOrderTechnician")]
-        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrderTechnician (string Area)
+        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrderTechnician (string Area,string TechnicianID)
         {
-            var orderlist = await _context.RepairOrder.Where(x=>x.Area==Area).AsNoTracking().ToListAsync();
+            try {
+            var orderlist = await _context.RepairOrder.Where
+            (x=>x.Area==Area && x.Status == "OrderPlace" || (x.TechnicianId ==TechnicianID ))
+            .AsNoTracking().ToListAsync();
             return Ok(orderlist);
+            
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
 
@@ -83,9 +102,23 @@ namespace TVRepair.Api.apicontroller
             try {
             
             var updateorder = _context.RepairOrder.FirstOrDefault(x=>x.Id == Id);
+
+            if(updateorder==null)
+            return BadRequest("Data is null");
+
             updateorder.Status = "Accepted";
             updateorder.TechnicianId = TechnicianId;
             _context.SaveChanges();
+
+            var statushistory = new RepairOrderStatusHistory
+            {
+                RepairOrderID = Id,
+                Status = updateorder.Status,
+                UpdatedDate = DateTime.Now
+            };
+
+            _context.RepairOrderStatusHistory.Add(statushistory);
+            await _context.SaveChangesAsync();
 
             return Ok(new
             {

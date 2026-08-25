@@ -10,19 +10,31 @@ export function useUserAuth() {
 
 export default function AuthenticationContext ( {children})
 {
-
     const [user,setUser] = useState(null);
+    const [isLogout, setLogoutMessage] = useState("");
 
-    function Logout()
+    async function Logout()
     {
+        const response = await fetch('http://localhost:5070/api/Authentication/logout',
+            {
+                method : "POST",
+                credentials : "include"
+            }
+        )
+
+        if(response.ok) {
         setUser(null);
+        setLogoutMessage("Success Logout!");
+        } 
+        else alert("Logout failed")
     }
 
     return (
         <AuthContext.Provider value={{
         user,
         setUser, 
-        Logout
+        Logout,
+        isLogout
         }}>
             
         {children}

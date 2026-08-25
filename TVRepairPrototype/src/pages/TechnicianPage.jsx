@@ -10,7 +10,8 @@ export default function TechnicianPage () {
     {
         const query = new URLSearchParams (
             {
-            Area : user?.area
+            Area : user?.area,
+            TechnicianId : user?.Id
         });
 
         const response = await fetch(`http://localhost:5070/api/tvrepair/GetRepairOrderTechnician?${query}`)
