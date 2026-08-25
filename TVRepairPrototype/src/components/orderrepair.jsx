@@ -63,7 +63,7 @@ export default function OrderRepair()
 
             <p>TV Brand?</p>
             {/* <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input> */}
-            <select className='form-select mb-4'>
+            <select className='form-select mb-4' value={brand} onChange={(event)=> setBrand(event.target.value)}>
                 <option value="Samsung">Samsung</option>
                 <option value="Sony">Sony</option>
                 <option value="Hitachi">Hitachi</option>
@@ -74,7 +74,7 @@ export default function OrderRepair()
 
             <p>Area</p>
             {/* <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input> */}
-            <select className="form-select mb-4">
+            <select className="form-select mb-4" value={area} onChange={(event)=> setArea(event.target.value)}>
                 <option value="Kuala Lumpur">Kuala Lumpur</option>
                 <option value="Kuala Lumpur">Johor</option>
                 <option value="Kuala Lumpur">Selangor</option>

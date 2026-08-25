@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using TVRepair.Api.data;
 using TVRepair.Api.model;
 
@@ -31,6 +32,8 @@ namespace TVRepair.Api.apicontroller
                 return BadRequest();
 
                 request.Id = Guid.NewGuid();
+                request.CreatedDate = DateTime.Now;
+                request.Status = "OrderPlace"; //assign default value when orderplaced
 
                 _context.RepairOrder.Add(request);
                 await _context.SaveChangesAsync();
@@ -98,5 +101,13 @@ namespace TVRepair.Api.apicontroller
                 return BadRequest();
             }
         }
+
+        [HttpPost("MatchRepairOrderTechnician")]
+        public async Task <ActionResult<List<RepairOrder>>> MatchRepairOrderTechnician ()
+        {
+
+            return Ok();
+        }
+
     }
 }

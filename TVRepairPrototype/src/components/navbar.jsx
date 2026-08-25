@@ -2,13 +2,23 @@
 import OrderRepair from "./orderrepair"
 import CheckStatus from "../pages/CheckStatus"
 import './navbar.css'
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useUserAuth } from "../context/authenticationcontext"
 import { useState } from "react"
 
 export default function Navbar()
 {
     const { user, setUser, Logout} = useUserAuth();
+    const navigate = useNavigate();
+
+    function LogoutFlow()
+    {
+        Logout();
+
+        navigate("/login", {
+            
+        })
+    }
 
     return (
         <>
@@ -39,7 +49,7 @@ export default function Navbar()
 
                     { user && (
                         <div className="d-flex">
-                        <button className="btn btn-success border border-2" onClick={Logout}>Logout</button>
+                        <button className="btn btn-success border border-2" onClick={LogoutFlow}>Logout</button>
 
                         <div>
                         <p className="m-2">Hello! <b>{user?.email}, {user?.name}</b></p>

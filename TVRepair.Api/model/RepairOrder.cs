@@ -21,5 +21,8 @@ namespace TVRepair.Api.model
         public string? Status { get ;set ;}
 
         public string? TechnicianId { get ;set ;}
+
+        public DateTime CreatedDate { get ;set ;}
+        
     }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query";
 import { useUserAuth } from "../context/authenticationcontext";
-
+import StatusTracker from "../components/statustracker";
 
 export default function CheckStatus()
 {
@@ -38,8 +38,14 @@ export default function CheckStatus()
 
 
     return (
-        <div className="min-vh-60 d-flex justify-content-center">
-            <div className="container align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">
+        <div className="d-flex justify-content-center flex-column justify-content-center">
+            <div className="justify-content-center align-content-center">
+                {orders.map((order)=> (
+                <StatusTracker orderId={order.id} currentStatus={order.status}></StatusTracker>
+                ))}
+            </div>
+            
+            <div className="container-fluid min-vh-100 align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">
                 <h1>Your Order</h1>
                 <img src="../src/assets/boxempty.png" width={200}></img>
                 {orders?.length > 0 ? (

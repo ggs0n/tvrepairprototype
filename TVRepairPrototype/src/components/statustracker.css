@@ -1,0 +1,17 @@
+.status-circle {
+    display: flex;
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 8px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: white;
+    border: 2px solid #dee2e6;
+    border-radius: 50%;
+}
+
+.status-circle.current {
+    background-color: #198754;
+    border-color: #198754;
+}
