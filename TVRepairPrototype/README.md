@@ -1,16 +1,66 @@
-# React + Vite
+# RepairLah! TV Repair Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RepairLah! is a full-stack web application for customers to submit TV repair requests, track repair progress, and connect with technicians in their area.
 
-Currently, two official plugins are available:
+## Current Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Customer and technician registration
+- Cookie-based login and logout
+- Submit TV repair orders
+- View multiple customer orders
+- Match repair orders with technicians by area
+- Technician job acceptance
+- Repair status tracker
+- Repair status history
 
-## React Compiler
+## Repair Workflow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Order Placed
+→ Searching Technician
+→ Technician Accepted
+→ In Repair
+→ Completed
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+- React
+- Vite
+- React Router
+- Bootstrap
+- CSS
+
+### Backend
+
+- ASP.NET Core Web API
+- .NET 8
+- Entity Framework Core
+- ASP.NET Core Identity
+- SQL Server LocalDB
+- Swagger
+
+## Project Structure
+
+tvrepairprototype/
+├── TVRepairPrototype/   # React frontend
+└── TVRepair.Api/        # ASP.NET Core API
+
+## Planned Features
+
+- Complete status-transition APIs
+- Improved technician matching
+- Customer and technician authorization
+- Photo upload for damaged TVs
+- Technician completion evidence
+- Customer completion confirmation
+- Status notifications
+- Unit and integration tests
+
+## Future Architecture Ideas
+
+RabbitMQ may later be introduced for background notifications and technician matching. The initial workflow will remain inside the ASP.NET Core API until asynchronous processing is needed.
+
+## Author
+
+Developed as a full-stack learning project using React and ASP.NET Core.
