@@ -6,11 +6,14 @@ import StatusTracker from "../components/statustracker";
 export default function CheckStatus()
 {
     const [orders, setOrder] = useState([]);
+    const [selectedorderid, setselectedOrderId] = useState("");
     const {user} = useUserAuth();
 
     const statusmessage = {
         OrderPlace : "Your order has been placed."
     }
+
+    const selectedorder = orders.find(order => order.id === selectedorderid) ?? orders[0] ?? null;
 
     async function LoadOrder()
     {
@@ -45,10 +48,19 @@ export default function CheckStatus()
         <div className="d-flex justify-content-center align-items-center flex-column justify-content-center">
             <h1>Track Your Repair</h1>
             <h2>Stay updated </h2>
-            <div className="justify-content-center align-content-centent mb-2">
+
+            
+            <select className="mb-2 m-2 p-2" onChange={event => setselectedOrderId(event.target.value)}>
                 {orders.map((order)=> (
-                <StatusTracker orderId={order.id} currentStatus={order.status}></StatusTracker>
+                <option value={order.id}>{order.id}</option>
                 ))}
+            </select>
+            
+            <div className="justify-content-center align-content-centent mb-2">
+                { selectedorder && (
+                <StatusTracker orderId={selectedorder.id} currentStatus={selectedorder.status}></StatusTracker>
+                )
+                }
             </div>
             
             <div className="container-fluid min-vh-100 align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">

@@ -14,8 +14,8 @@ const steps = [
         label: "Technician Accepted"
     },
     {
-        status: "InRepair",
-        label: "In Repair"
+        status: "InProgress",
+        label: "In Progress"
     },
     {
         status: "Completed",
@@ -33,7 +33,6 @@ export default function StatusTracker({
 
 
         <div className="container mx-auto d-flex gap-2 flex-column justify-content-center">
-
             <div className="d-flex flex-column align-items-center text-center">
             <h2>Order ID</h2>
             <p>{orderId}</p>
