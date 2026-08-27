@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query";
 import { useUserAuth } from "../context/authenticationcontext";
 import StatusTracker from "../components/statustracker";
+import OrderPlaced from "./OrderPlaced";
+import TechnicianAccepted from "./TechnicianAccepted";
 
 export default function CheckStatus()
 {
@@ -62,40 +64,17 @@ export default function CheckStatus()
                 )
                 }
             </div>
-            
-            <div className="container-fluid min-vh-100 align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">
-                <h1>Your Order</h1>
-                <img src="../src/assets/boxempty.png" width={200}></img>
-                {orders?.length > 0 ? (
-                <div>
-                    <div>
-                        <table className="border border-4 bg-light border border-2 border-dark p-4 m-4 gap-2">
-                            <thead className="border border-2 border-black p-2 m-2 gap-2">
-                                <tr>
-                                    <th>Brand</th>
-                                    <th>Area</th>
-                                    <th>Issue Description</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {orders.map((order)=> (
-                                <tr key={order.id}>
-                                    <td>{order.brand}</td>
-                                    <td>{order.area}</td>
-                                    <td>{order.issueDescription}</td>
-                                    <td>{statusmessage[order.status]}</td>
-                                </tr>
-                             ))}
-                             </tbody>
-                        </table>
-                    </div>
 
-                </div>
-                ) : (<p>No orders. Let's get started here!</p>
-                )}
-                <button className="btn btn-success m-2">Call Technician</button>
-            </div>
+            { selectedorder?.status == "OrderPlace" && (
+            <OrderPlaced orders={selectedorder}></OrderPlaced>
+            )}
+
+            
+            { selectedorder?.status == "Accepted" && (
+            <TechnicianAccepted orders={selectedorder}></TechnicianAccepted>
+            )}
+
+
         </div>
     )
 }

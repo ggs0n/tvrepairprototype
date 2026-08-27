@@ -78,10 +78,10 @@ namespace TVRepair.Api.apicontroller
         {
             try {
             var orderlist = await _context.RepairOrder.Where
-            (x=>x.Area==Area && x.Status == "OrderPlace" || (x.TechnicianId ==TechnicianID ))
+            (x=> (x.Area==Area && x.Status == "OrderPlace") || (x.TechnicianId ==TechnicianID ))
             .AsNoTracking().ToListAsync();
             return Ok(orderlist);
-            
+
             }
             catch (Exception ex)
             {

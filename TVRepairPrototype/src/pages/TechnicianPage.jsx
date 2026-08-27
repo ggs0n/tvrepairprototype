@@ -11,7 +11,7 @@ export default function TechnicianPage () {
         const query = new URLSearchParams (
             {
             Area : user?.area,
-            TechnicianId : user?.Id
+            TechnicianId : user?.id
         });
 
         const response = await fetch(`http://localhost:5070/api/tvrepair/GetRepairOrderTechnician?${query}`)
@@ -34,7 +34,7 @@ export default function TechnicianPage () {
     {
         const query = new URLSearchParams (
             {
-                TechnicianId : user.id,
+                TechnicianId : user.Id,
                 Id : orderid
             }
         ) 
@@ -71,6 +71,7 @@ export default function TechnicianPage () {
                     <th>Area</th>
                     <th>Username</th>
                     <th>Status</th>
+                    <th>Order Id</th>
                 </thead>
                 {orderlist.map((order) => (
                 <tbody key={order.id}>
@@ -79,9 +80,20 @@ export default function TechnicianPage () {
                         <td>{order?.area}</td>
                         <td>{order?.userName}</td>
                         <td>{order?.status}</td>
+                        <td>{order?.id}</td>
+                        { order.status != "Accepted" && (
                         <td>
                             <button onClick={() => AcceptJob(order.id)}>Accept Job</button>
                         </td>
+                        )}
+
+                        { order.status == "Accepted" && (
+                        <td>
+                            <button onClick={() => AcceptJob(order.id)}>Add Quotation</button>
+                        </td>
+                        )} 
+
+
                     </tr>
                 </tbody>
                 ))}

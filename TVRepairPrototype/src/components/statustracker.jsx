@@ -6,12 +6,12 @@ const steps = [
         label: "Order Place"
     },
     {
-        status: "SearchingTechnician",
-        label: "Searching Technician"
-    },
-    {
         status: "Accepted",
         label: "Technician Accepted"
+    },
+    {
+        status: "Quotation",
+        label: "Quotation & Diagnosis"
     },
     {
         status: "InProgress",

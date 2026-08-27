@@ -60,7 +60,7 @@ export default function Login()
     return (
     <div className="min-vh-100 m-2 p-2">
     <div className="row">
-        <div className="m-2 p-2 d-flex flex-column col-2">
+        <div className="m-2 p-2 d-flex flex-column col-12 col-md-12">
         <img src="../src/assets/tvpicturemainpage.png" width={650} height={500}></img>
         </div>
 
@@ -70,7 +70,7 @@ export default function Login()
                 </div>
         )}
         
-        <div className="container d-flex flex-column col-4 p-4 mb-4">
+        <div className="container d-flex flex-column col-2 col-md-4 p-4 mb-4">
             <form onSubmit={LoginUser}>
             <h1>Login Detail</h1>
             <label>Email : </label>
