@@ -83,7 +83,7 @@ export default function TechnicianPage () {
                         <td>{order?.userName}</td>
                         <td>{order?.status}</td>
                         <td>{order?.id}</td>
-                        { order.status != "Accepted" && (
+                        { order.status == "OrderPlace" && (
                         <td>
                             <button onClick={() => AcceptJob(order.id)}>Accept Job</button>
                         </td>
@@ -98,7 +98,7 @@ export default function TechnicianPage () {
                 </tbody>
                 ))}
             </table>
-            
+
             { quotationorder && (
             <Quotation order={quotationorder}></Quotation>
             )

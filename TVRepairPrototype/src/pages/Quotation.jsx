@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+import { useUserAuth } from "../context/authenticationcontext";
 
 
 export default function Quotation({order})
 {
+    const { user, setUser, isLogout } = useUserAuth();
+
     async function SubmitQuotation(event)
     {
         event.preventDefault();
@@ -30,6 +33,8 @@ export default function Quotation({order})
     }
 
     return (
+    <>
+        {  user.CustomerType == "technician" && (
         <div className="m-2 p-2">
           <h1>Create Repair Quotation</h1>
 
@@ -47,5 +52,10 @@ export default function Quotation({order})
            <button type="submit">Submit Quotation to Customer</button>
           </form>
         </div>
+        )}
+
+
+    </>
     )
+
 }

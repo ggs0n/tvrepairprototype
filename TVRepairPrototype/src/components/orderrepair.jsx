@@ -24,6 +24,7 @@ export default function OrderRepair()
         formData.set("Brand", brand);
         formData.set("Area", area);
         formData.set("IssueDescription",issuedescription);
+        formData.set("CustomerId",user.id);
         formData.set("Photo",photo);
 
         const response = await fetch(

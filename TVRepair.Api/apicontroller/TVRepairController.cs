@@ -59,12 +59,14 @@ namespace TVRepair.Api.apicontroller
         }
 
         [HttpGet("GetRepairOrder")]
-        public async Task<ActionResult<List<RepairOrder>>> GetRepairOrder(string UserName)
+        public async Task<ActionResult<List<GetRepairOrderResponse>>> GetRepairOrder(string UserName)
         {
             if (UserName==null)
             return BadRequest();
             
-            var repairorderlist = await _context.RepairOrder.Where(a=>a.UserName == UserName).AsNoTracking().ToListAsync();
+            // var repairorderlist = await _context.RepairOrder.Where(a=>a.UserName == UserName).AsNoTracking().ToListAsync();
+
+            var repairorderlist = await _context.Database.SqlQuery<GetRepairOrderResponse>($"EXEC dbo.GetRepairOrderTechnician @UserName={UserName}").ToListAsync();
 
             if(repairorderlist==null)
             return BadRequest();
@@ -142,11 +144,16 @@ namespace TVRepair.Api.apicontroller
             return Ok();
         }
 
-
         [HttpPost("SubmitQuotation")]
         public async Task <ActionResult> SubmitQuotation (SubmitQuotationRequest request)
         {   
             try {
+
+            var quotationlist = _context.Quotation.FirstOrDefault(x=>x.RepairOrderId == request.RepairOrderId);
+
+            if (quotationlist!=null)
+            return BadRequest();
+
             var quotation = new Quotation
             {
                 RepairOrderId = request.RepairOrderId,
@@ -157,11 +164,15 @@ namespace TVRepair.Api.apicontroller
             };
 
             _context.Add(quotation);
+
+            var updateorder = _context.RepairOrder.FirstOrDefault(x=>x.Id == request.RepairOrderId);
+
+            updateorder.Status = "Quotation"; 
+
             await _context.SaveChangesAsync();
+
             return Ok();
-
             }
-
             catch(Exception ex)
             {
                 return BadRequest();
