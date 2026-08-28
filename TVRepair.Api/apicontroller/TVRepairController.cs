@@ -34,7 +34,7 @@ namespace TVRepair.Api.apicontroller
                 request.Id = Guid.NewGuid();
                 request.CreatedDate = DateTime.Now;
                 request.Status = "OrderPlace"; //assign default value when orderplaced
-
+            
                 _context.RepairOrder.Add(request);
                 await _context.SaveChangesAsync();
 
@@ -141,6 +141,33 @@ namespace TVRepair.Api.apicontroller
 
             return Ok();
         }
+
+
+        [HttpPost("SubmitQuotation")]
+        public async Task <ActionResult> SubmitQuotation (SubmitQuotationRequest request)
+        {   
+            try {
+            var quotation = new Quotation
+            {
+                RepairOrderId = request.RepairOrderId,
+                QuotationDesc = request.QuotationDesc,
+                Amount = Convert.ToInt32(request.Amount),
+                CustomerId = request.CustomerId,
+                TechnicianId = request.TechnicianId
+            };
+
+            _context.Add(quotation);
+            await _context.SaveChangesAsync();
+            return Ok();
+
+            }
+
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        
 
     }
 }

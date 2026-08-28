@@ -17,5 +17,6 @@ namespace TVRepair.Api.data
 
         public DbSet<RepairOrder> RepairOrder { get ; set;}
         public DbSet<RepairOrderStatusHistory> RepairOrderStatusHistory { get ; set;}
+        public DbSet<Quotation> Quotation { get ;set;}
     }
 }

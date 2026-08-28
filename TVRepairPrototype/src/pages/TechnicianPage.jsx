@@ -1,10 +1,12 @@
 import { useUserAuth } from "../context/authenticationcontext";
 import { useState,useEffect } from "react";
+import Quotation from "./Quotation";
 export default function TechnicianPage () {
 
     const {user} = useUserAuth();
     const [orderlist, setOrderTechnician]  = useState([])
     const [statusupdate, setStatusUpdate] = useState()
+    const [quotationorder, setQuotationorder] = useState(null)
 
     async function GetOrderTechnician()
     {
@@ -34,7 +36,7 @@ export default function TechnicianPage () {
     {
         const query = new URLSearchParams (
             {
-                TechnicianId : user.Id,
+                TechnicianId : user.id,
                 Id : orderid
             }
         ) 
@@ -89,15 +91,18 @@ export default function TechnicianPage () {
 
                         { order.status == "Accepted" && (
                         <td>
-                            <button onClick={() => AcceptJob(order.id)}>Add Quotation</button>
+                            <button onClick={() => setQuotationorder(order)}>Add Quotation</button>
                         </td>
                         )} 
-
-
                     </tr>
                 </tbody>
                 ))}
             </table>
+            
+            { quotationorder && (
+            <Quotation order={quotationorder}></Quotation>
+            )
+            }
     </div>
 
     ) 

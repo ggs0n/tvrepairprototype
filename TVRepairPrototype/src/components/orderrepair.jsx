@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router';
 
 export default function OrderRepair()
 {
-    const [brand, setBrand] = useState();
-    const [area, setArea] = useState();
+    const [brand, setBrand] = useState("Samsung");
+    const [area, setArea] = useState("Kuala Lumpur");
     const [issuedescription, setIssueDesc] = useState();
     const { user } = useUserAuth();
     const [photo, setPhoto] = useState();

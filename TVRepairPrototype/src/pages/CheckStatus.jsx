@@ -4,6 +4,7 @@ import { useUserAuth } from "../context/authenticationcontext";
 import StatusTracker from "../components/statustracker";
 import OrderPlaced from "./OrderPlaced";
 import TechnicianAccepted from "./TechnicianAccepted";
+import Quotation from "./Quotation";
 
 export default function CheckStatus()
 {
@@ -72,6 +73,11 @@ export default function CheckStatus()
             
             { selectedorder?.status == "Accepted" && (
             <TechnicianAccepted orders={selectedorder}></TechnicianAccepted>
+            )}
+
+
+            { selectedorder?.status == "Qoutation" && (
+            <Quotation orders={selectedorder}></Quotation>
             )}
 
 
