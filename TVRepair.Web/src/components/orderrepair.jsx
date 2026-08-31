@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useUserAuth } from "../context/authenticationcontext";
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { MonitorCog} from 'lucide-react'
 
 export default function OrderRepair()
 {
@@ -51,66 +52,86 @@ export default function OrderRepair()
     <div className="">  
       <div className="container-fluid row justify-content-end">
 
-        <div className="col-8 container p-5 border border-2 left-side-tv">
-           <h1>TV Broken?</h1>
-           <h1>We Repair, <span className="text-success">You Relax</span></h1>
-           <p>Take photo and send to us</p>
-           <p>Assign to technician under 5 minute</p>
-           <p>technician will pickup your tv at your home</p>
+        <div className="grid grid-cols-2">
+            <div className="p-6 left-side-tv bg-gradient-to-br from-white via-green-50/40 to-white">
+            <p className="bg-green-200 rounded-full inline-flex text-sm font-semibold py-2 mb-3 text-green-700">Fast Easy Reliable</p>
+            <h1 className="text-3xl font-bold">TV Broken?</h1>
+            <h1 className='text-3xl font-bold mb-3'>We Repair, <span className="text-green-700">You Relax</span></h1>
 
-           <div className="d-flex justify-content-end">
-            <img src="../src/assets/tvpicturemainpage.png" width={600} height={400}></img>
-           </div>
-        </div>
+            <div className="text-base space-y-3 text-sm">
+            <p>Take photo and send to us</p>
+            <p>Assign to technician under 5 minute</p>
+            <p>technician will pickup your tv at your home</p>
+            </div>
 
-        <div className="col-4 border border-2 p-5 right-side-orderform">
+            <div className="flex justify-content-end">
+                <img src="../src/assets/tvpicturemainpage.png" width={600} height={400}></img>
+            </div>
+            </div>
+
+            
+
+            <div className="border border-1 rounded-xl border-gray-300 p-6 shadow-lg right-side-orderform">
             <form onSubmit={SaveData}> 
-            <p><b>What's wrong with your TV?</b></p>
 
-            <p>TV Brand?</p>
-            {/* <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input> */}
-            <select className='form-select mb-4' value={brand} onChange={(event)=> setBrand(event.target.value)}>
-                <option value="Samsung">Samsung</option>
-                <option value="Sony">Sony</option>
-                <option value="Hitachi">Hitachi</option>
-            </select>
+                <div className='flex mb-4'>
+                    <MonitorCog className='m-4'></MonitorCog>
+                    <div>
+                    <p><b>What's wrong with your TV?</b></p>
+                    <p>Provide a few details so we can help you faster</p>
+                    </div>
+                </div>
 
-            <p>Issue Description</p>
-            <input className="form-control" type="text" value={issuedescription} onChange={(event)=> setIssueDesc(event.target.value)}></input>
+                <div className='mb-4'>
+                <p className="font-bold">TV Brand?</p>
+                {/* <input className="form-control" type="text" value={brand} onChange={(event)=>setBrand(event.target.value)}></input> */}
+                <select className="w-full rounded-lg border border-gray-200 p-3" value={brand} onChange={(event)=> setBrand(event.target.value)}>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Hitachi">Hitachi</option>
+                </select>
+                </div>
 
-            <p>Area</p>
-            {/* <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input> */}
-            <select className="form-select mb-4" value={area} onChange={(event)=> setArea(event.target.value)}>
-                <option value="Kuala Lumpur">Kuala Lumpur</option>
-                <option value="Johor">Johor</option>
-                <option value="Selangor">Selangor</option>
-                <option value="Cyberjaya">Cyberjaya</option>
-            </select>
+                <div className='mb-2'>
+                <p>Issue Description</p>
+                <input className="w-full rounded-lg border border-gray-200 p-3" type="text" value={issuedescription} onChange={(event)=> setIssueDesc(event.target.value)}></input>
+                </div>
+                
+                <div className='mb-2'>
+                <p>Area</p>
+                {/* <input className="form-control" type="text" value={area} onChange={(event)=>setArea(event.target.value)}></input> */}
+                <select className="w-full rounded-lg border border-gray-300 p-3" value={area} onChange={(event)=> setArea(event.target.value)}>
+                    <option value="Kuala Lumpur">Kuala Lumpur</option>
+                    <option value="Johor">Johor</option>
+                    <option value="Selangor">Selangor</option>
+                    <option value="Cyberjaya">Cyberjaya</option>
+                </select>
+                </div>
 
-            <p>Add Photo</p>
-            <input className="form-control" name='Photo' type='file' accept='image/*' className="form-control" onChange={(event)=> setPhoto(event.target.files[0])}></input>
-            <br></br>
-            <button className="bg-success text-light p-2 m-2 align-items-center">Submit Order</button>
+                <div className='mb-4'>
+                <p>Add Photo</p>
+                <input className="w-full rounded-lg border  border-gray-200 p-3" name='Photo' type='file' accept='image/*' onChange={(event)=> setPhoto(event.target.files[0])}></input>
+                </div>
 
-        </form>
+                <button className="bg-green-700 py-3 text-white p-2 w-full rounded rounded-2 cursor-pointer hover:bg-green-950" type='submit'>Submit Order</button>
+
+            </form>
+            </div>
         </div>
 
-        <div className="m-2 p-4 gap-2 justify-content-center d-flex">
-            <div className="row g-5 w-100">
-                <div className="col-3">
+        <div className="grid grid-cols-4 p-4 m-4 justify-content-center flex">
+                <div>
                     Secure & Safe
                 </div>
-                <div className="col-3">
+                <div>
                     Live Updates
                 </div>
-                <div className="col-3">
+                <div>
                     Transparent Pricing
                 </div>
-                <div className="col-3">
+                <div>
                     Support
                 </div>
-
-            </div>
         </div>
         <div className="modal fade" id="successModal" aria-hidden="true">
         <div className="modal-dialog">

@@ -3,7 +3,7 @@ export default function Footer()
     return (
 
 
-     <div className="d-flex justify-content-center p-4">
+     <div className="flex justify-content-center p-4">
          <p className="m-2">
         <img src='../src/assets/hero.png' width={30} height={30}></img>
          </p>

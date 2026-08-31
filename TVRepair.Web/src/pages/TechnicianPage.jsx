@@ -65,7 +65,7 @@ export default function TechnicianPage () {
     }
 
     return (
-    <div className="container d-flex flex-column border border-2">
+    <div className="container flex flex-column border border-2">
         <p>Technician Page</p>
             <table className="container">
                 <thead>

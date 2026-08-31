@@ -41,7 +41,7 @@ export default function Register()
         <>
         <div className="border border-5">
         <form onSubmit={SubmitRegister}>
-        <div className="container p-2 gap-2 d-flex flex-column col-5">
+        <div className="container p-2 gap-2 flex flex-column col-5">
             <h1>Registration Detail</h1>
             <label>Name : </label>
             <input name="name" type="text" className="form-control"></input>
@@ -54,7 +54,7 @@ export default function Register()
             <label>Re-enter Password :</label>
             <input type="password" className="form-control"></input>
         </div>
-        <div className="d-flex container align-items-center gap-2 col-5">
+        <div className="flex container align-items-center gap-2 col-5">
             <button type="submit">Register</button>
         </div>
         </form>

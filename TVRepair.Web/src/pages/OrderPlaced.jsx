@@ -1,7 +1,7 @@
 export default function OrderPlaced ({orders})
 {
     return (  
-    <div className="container-fluid min-vh-100 align-items-center d-flex flex-column p-2 m-2 border border-2 bg-white">
+    <div className="container-fluid min-vh-100 align-items-center flex flex-column p-2 m-2 border border-2 bg-white">
                 <h2>Your repair request has been received</h2>
                 <img src="../src/assets/boxempty.png" width={200}></img>
                 {orders? (

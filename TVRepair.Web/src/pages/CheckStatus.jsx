@@ -48,15 +48,26 @@ export default function CheckStatus()
 
 
     return (
-        <div className="d-flex justify-content-center align-items-center flex-column justify-content-center">
-            <h1>Track Your Repair</h1>
-            <h2>Stay updated </h2>
+        <div className="py-2 px-4">
+         
+
+         <div className="flex items-center justify-between mb-10">
+            <div>
+            <h1 className="text-3xl font-bold">Track Your Repair</h1>
+            <h2>Stay updated with the latest status of your repair</h2>
+            </div>
             
+
+            <div className="flex items-center">
+            <p>Order Id = </p>
             <select className="mb-2 m-2 p-2" onChange={event => setselectedOrderId(event.target.value)}>
                 {orders.map((order)=> (
                 <option value={order.id}>{order.id}</option>
                 ))}
             </select>
+            </div>
+        </div>
+
                         
             <div className="justify-content-center align-content-centent mb-2">
                 { selectedorder && (

@@ -2,6 +2,7 @@ using TVRepair.Api.model;
 using Microsoft.EntityFrameworkCore;
 using TVRepair.Api.data;
 using Microsoft.AspNetCore.Identity;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,19 @@ builder.Services.Configure<IdentityOptions>(options =>
     // Lockout
     options.Lockout.AllowedForNewUsers = false;
 });
+
+var stripeSecretKey =
+    builder.Configuration["Stripe:SecretKey"];
+
+if (string.IsNullOrWhiteSpace(stripeSecretKey))
+{
+    throw new InvalidOperationException(
+        "Stripe:SecretKey is missing from appsettings.json.");
+}
+
+builder.Services.AddSingleton<IStripeClient>(
+    new StripeClient(stripeSecretKey)
+);
 
 var app = builder.Build();
 
