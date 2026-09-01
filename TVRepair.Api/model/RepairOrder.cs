@@ -23,6 +23,8 @@ namespace TVRepair.Api.model
         public string? TechnicianId { get ;set ;}
 
         public DateTime CreatedDate { get ;set ;}
+
+        public string CustomerId { get ;set;}
         
     }
 }

@@ -24,10 +24,12 @@ namespace TVRepair.Api.data
 
         public DateTime CreatedDate { get ;set ;}
 
-        public string QuotationDesc { get ;set;}
+        public string? QuotationDesc { get ;set;}
 
-        public decimal QuotationAmount { get ;set;}
+        public decimal? QuotationAmount { get ;set;}
 
-        public DateTime QuotationDate { get ;set;}
+        public DateTime? QuotationDate { get ;set;}
+
+        public string CustomerId { get ;set;}
     }
 }

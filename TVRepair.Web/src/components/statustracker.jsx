@@ -33,8 +33,7 @@ export default function StatusTracker({
 
 
         <div className="justify-center flex">
-            <div className="flex gap-5 items-center justify-center flex border border-gray-200 p-10">
-                
+            <div className="flex items-start justify-center flex border rounded-xl border-gray-200 p-10 w-full">
                 {steps.map((step,index)=>{
 
                     const isCurrent = step.status == currentStatus;
@@ -42,9 +41,12 @@ export default function StatusTracker({
                     return (
                     
                         
-                    <div key={step.status} className='text-center'>
-                        <div className={isCurrent ? "status-circle current" : "status-circle"}> 
-                        { isCurrent ? "✓" : ""}
+                    <div key={step.status} className='relative flex-1 text-center'>
+                        {index < steps.length - 1 && (
+                        <div className="absolute left-1/2 top-[22px] h-px not-first:w-full bg-gray-300" />
+                        )}
+                        <div className={`status-circle relative z-10 ${ isCurrent ? "current" : ""}`} >
+                            {isCurrent ? "✓" : ""}
                         </div>
                         {step.label}
                     </div>

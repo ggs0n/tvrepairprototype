@@ -46,7 +46,7 @@ export default function Login()
             alert("login success");
 
             if (responsedata.customertype == 'customer')
-            navigate("/");
+            navigate("/check-status");
             else if(responsedata.customertype == 'technician')
             navigate("/technicianpage")
 
@@ -63,16 +63,17 @@ export default function Login()
         <img src="../src/assets/tvpicturemainpage.png" width={500} height={500}></img>
         </div>
 
-        {logoutmessage && (
-            <div>
-                <p>{logoutmessage}</p>
-                </div>
-        )}
-        
+
         <div className="border border-gray-300 p-4 rounded-xl mr-6 shadow-xl">
             <form onSubmit={LoginUser}>
             
             <div className="text-center mb-5">
+            {logoutmessage && (
+            <div>
+                <h1>{logoutmessage}</h1>
+            </div>
+            )}
+        
             <h1 className="mb-4">RepairLah!</h1>
             <h1 className="text-xl font-bold">Welcome Back!</h1>
             <h1>Login in to your account</h1>
