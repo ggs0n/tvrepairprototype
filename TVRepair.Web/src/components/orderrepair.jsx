@@ -50,7 +50,7 @@ export default function OrderRepair()
     
     return (
     <div className="">  
-      <div className="container-fluid row justify-content-end">
+      <div className="container-fluid row justify-content-end mr-10 ml-10">
 
         <div className="grid grid-cols-2">
             <div className="p-6 left-side-tv bg-gradient-to-br from-white via-green-50/40 to-white">

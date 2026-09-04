@@ -85,13 +85,13 @@ export default function TechnicianPage () {
                         <td>{order?.id}</td>
                         { order.status == "OrderPlace" && (
                         <td>
-                            <button onClick={() => AcceptJob(order.id)}>Accept Job</button>
+                            <button className="bg-green-700 p-3 m-2 rounded-xl text-white" onClick={() => AcceptJob(order.id)}>Accept Job</button>
                         </td>
                         )}
 
                         { order.status == "Accepted" && (
                         <td>
-                            <button onClick={() => setQuotationorder(order)}>Add Quotation</button>
+                            <button className="bg-green-700 p-3 m-2 rounded-xl text-white" onClick={() => setQuotationorder(order)}>Add Quotation</button>
                         </td>
                         )} 
                     </tr>

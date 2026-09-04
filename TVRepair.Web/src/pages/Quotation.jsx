@@ -34,7 +34,7 @@ export default function Quotation({order})
 
     return (
     <>
-        {  user.CustomerType == "technician" && (
+        {  user.customertype == "technician" && (
         <div className="m-2 p-2">
           <h1>Create Repair Quotation</h1>
 
